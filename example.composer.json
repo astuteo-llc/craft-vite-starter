@@ -1,0 +1,55 @@
+{
+  "autoload": {
+    "psr-4": {
+      "modules\\sitemodule\\": "modules/sitemodule/src/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "craftcms/plugin-installer": true,
+      "yiisoft/yii2-composer": true
+    },
+    "optimize-autoloader": true,
+    "platform": {
+      "php": "8.1"
+    },
+    "sort-packages": true
+  },
+  "require": {
+    "craftcms/cms": "^4.3.1",
+    "craftcms/aws-s3": "^2.0",
+    "wabisoft/craft-bonsai-twig": "^1.0",
+    "astuteo/astuteo-toolkit": "^4.3.5",
+    "nystudio107/craft-retour": "4.1.5",
+    "nystudio107/craft-seomatic": "4.0.13",
+    "nystudio107/craft-vite": "^4.0",
+    "vlucas/phpdotenv": "^5.4.0"
+  },
+  "require-dev": {
+    "nystudio107/craft-autocomplete": "^1.10.0",
+    "yiisoft/yii2-shell": "^2.0.3"
+  },
+  "scripts": {
+    "craft-update": [
+      "@pre-craft-update",
+      "@post-craft-update"
+    ],
+    "pre-craft-update": [
+    ],
+    "post-craft-update": [
+      "@php craft install/check && php craft up --interactive=0 || exit 0",
+      "@php craft install/check && php craft clear-caches/all --interactive=0 || exit 0",
+      "@php craft install/check && php craft invalidate-tags/all --interactive=0 || return 0"
+    ],
+    "post-root-package-install": [
+      "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+    ],
+    "post-create-project-cmd": [
+      "@php craft setup/welcome"
+    ],
+    "pre-update-cmd": "@pre-craft-update",
+    "pre-install-cmd": "@pre-craft-update",
+    "post-update-cmd": "@post-craft-update",
+    "post-install-cmd": "@post-craft-update"
+  }
+}

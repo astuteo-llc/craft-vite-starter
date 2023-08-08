@@ -1,19 +1,8 @@
 /.env
 /.idea
-.DS_Store
-.cache
-.project
-.settings
-*.sublime-workspace
-*.sublime-project
-*.tmproj
-*.tmproject
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-/node_modules/*
 /vendor
-/web/dist
-public_html/dist/*
+/node_modules
+.DS_Store
+
+# Don't save package-lock, when we're fresh installing.
+package-lock.json
