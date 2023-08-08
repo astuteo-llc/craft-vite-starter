@@ -1,0 +1,19 @@
+{#
+While in devMode:
+
+To see full path: ?showItemHierarchy=1
+To see applied template: ?showItemPath=1
+
+opacity-0 hover:opacity-100 group-hover:opacity-100
+#}
+
+{% set itemPath = 'item/' %}
+{% set style = style is defined ? style : 'none' %}
+{% set options = options is defined ? options : {} %}
+{% set context = context is defined ? context : 'none' %}
+{% set overridableSettings = overridableSettings is defined ? overridableSettings : {} %}
+
+{{ itemTemplates({
+    itemPath, entry, style: style, context, options, overridableSettings
+}) }}
+

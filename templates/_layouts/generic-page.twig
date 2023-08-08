@@ -1,0 +1,37 @@
+{#
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ ┌─────────────────────────────────────────────────────────────────────────┐ │
+│ │                                                                         │ │
+│ │                                                                         │ │
+│ │                                                                         │ │
+│ │                                 content                                 │ │
+│ └─────────────────────────────────────────────────────────────────────────┘ │
+│ ┌─────────────────────────────────────────────────────────────────────────┐ │
+│ │                                                                         │ │
+│ │                                                                         │ │
+│ │                                                                         │ │
+│ │                               subContent                                │ │
+│ └─────────────────────────────────────────────────────────────────────────┘ │
+│                                                                             │
+│                                  bodyHtml                                   │
+└─────────────────────────────────────────────────────────────────────────────┘
+#}
+{% extends "_layouts/base/html.twig" %}
+
+{# -- Page body -- #}
+{% block bodyHtml %}
+
+    {% block masthead %}
+
+    {% endblock %}
+
+    {# -- Grow this section to fill center if window height is less than total content -- #}
+    <main id="main">
+        {# -- Primary content block -- #}
+        {% block content %}{% endblock %}
+    </main>
+
+    {# -- Content that appears below the primary content block -- #}
+    {% block subcontent %}{% endblock %}
+
+{% endblock bodyHtml %}

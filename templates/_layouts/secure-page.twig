@@ -1,0 +1,4 @@
+{% if craft.app.env  != 'dev' or not currentUser %}
+    {% redirect '/' %}
+{% endif %}
+{% extends '_layouts/generic-page.twig' %}

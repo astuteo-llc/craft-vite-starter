@@ -1,0 +1,28 @@
+name: craft-starter
+type: craftcms
+docroot: public_html
+php_version: "8.1"
+webserver_type: nginx-fpm
+router_http_port: "80"
+router_https_port: "443"
+xdebug_enabled: false
+additional_hostnames: []
+additional_fqdns: []
+database:
+  type: mysql
+  version: "8.0"
+nfs_mount_enabled: false
+use_dns_when_possible: true
+composer_version: "2"
+nodejs_version: "18"
+web_environment:
+  - APP_ID=
+  - DB_SERVER=db
+  - DB_USER=db
+  - DB_PASSWORD=db
+  - DB_DATABASE=db
+  - PRIMARY_SITE_URL=https://craft-starter.ddev.site/
+  - CRAFT_WEB_ROOT=/var/www/html/public_html/
+  - REDIS_HOST=127.0.0.1
+  - REDIS_PASSWORD=null
+  - REDIS_PORT=6379

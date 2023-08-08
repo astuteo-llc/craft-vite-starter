@@ -1,0 +1,83 @@
+name: Staging Deploy
+
+on:
+  push:
+    tags:
+      - 'staging/*'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    #    if: startsWith(github.ref, 'refs/tags/v')
+    # Add private key to Github secrets and
+    # add public key to authorized_keys on server
+    # see: https://github.com/webfactory/ssh-agent#creating-ssh-keys
+    env:
+      PROJECT_ROOT: REPLACE_ME
+      PHP_SERVICE_RESTART: php8.1-fpm
+      SSH_HOST: REPLACE_ME
+      SSH_USER: REPLACE_ME
+      SSH_PORT: 22
+      SSH_KEY: ${{ secrets.SSH_KEY }}
+      NODE_VERSION: 18.x
+      PROJECTS_SECRET: ${{ secrets.PROJECTS_SECRET }}
+
+    steps:
+      # Pull repository into the current pipeline
+      - name: Pull repository
+        uses: actions/checkout@v3
+
+      # Setup container with private SSH Key (used by rsync)
+      - name: Load private SSH key
+        uses: webfactory/ssh-agent@v0.5.4
+        with:
+          ssh-private-key: ${{ env.SSH_KEY }}
+
+      # Use a specific version of Node
+      - name: Set up Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      # Install PHP dependencies
+      - name: Composer install
+        run: composer install --no-interaction --no-progress --no-suggest --optimize-autoloader
+
+      # Cache node stuff if no changes
+      # Does not work using tags as trigger so commenting out for now
+      #- uses: actions/cache@v3
+      #  with:
+      #    path: '**/node_modules'
+      #    key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      # Install NPM dependencies
+      - name: Yarn install
+        run: yarn install --ignore-engines --quiet --production
+
+      # Build assets using locally installed Gulp
+      - name: Build assets with Mix
+        run: yarn run prod
+
+      # rsync
+      # exclude web/uploads is there to avoid deleting user uploaded files
+      # Setting StrictHostKeyChecking=no will automatically add new host keys to the user known hosts files.
+      - name: Deploy with rsync
+        run: |
+          rsync -azh --delete-after --exclude-from={"./.github/workflows/deploy-exclude.txt","./vendor/astuteo/astuteo-toolkit/deploy/exclude-list.txt"} -e "ssh -o StrictHostKeyChecking=no" ./ ${{ env.SSH_USER }}@${{ env.SSH_HOST }}:~/${{ env.PROJECT_ROOT }}/
+
+      # execute Craft commands on remote server
+      - name: Execute SSH commands on remote server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.SSH_HOST }}
+          username: ${{ env.SSH_USER }}
+          key: ${{ env.SSH_KEY }}
+          port: ${{ env.SSH_PORT }}
+          script: |
+            cd ${{ env.PROJECT_ROOT }}
+            chmod a+x craft
+            php craft db/backup
+            php craft migrate/all
+            php craft project-config/apply
+            php craft cache/flush-all
+            sudo -S service ${{ env.PHP_SERVICE_RESTART }} reload
