@@ -5,17 +5,17 @@
 # Configuration for remote server connection and directories to sync
 
 # PRODUCTION
-PROD_SERVER_IP="[prodIp]"
+PROD_SERVER_IP="prodIp"
 PROD_SSH_PORT="22"
-PROD_SSH_USERNAME="[prodSshUsername]"
-PROD_REMOTE_ROOT_PATH="[prodPath]" # Should end in "/" and be the full path
+PROD_SSH_USERNAME="prodSshUsername"
+PROD_REMOTE_ROOT_PATH="prodPath" # Should end in "/" and be the full path
 PROD_REMOTE_SSH_LOGIN="$PROD_SSH_USERNAME@$PROD_SERVER_IP"
 
 # STAGING
-STAGE_SERVER_IP="[stagingIp]"
+STAGE_SERVER_IP="stagingIp"
 STAGE_SSH_PORT="22"
-STAGE_SSH_USERNAME="[stagingSshUsername]"
-STAGE_REMOTE_ROOT_PATH="[stagingPath]" # Should end in "/" and be the full path
+STAGE_SSH_USERNAME="stagingSshUsername"
+STAGE_REMOTE_ROOT_PATH="stagingPath" # Should end in "/" and be the full path
 STAGE_REMOTE_SSH_LOGIN="$STAGE_SSH_USERNAME@$STAGE_SERVER_IP"
 
 # LOCAL:

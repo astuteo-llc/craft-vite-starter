@@ -1,4 +1,4 @@
-name: craft-starter
+name: astuteo-craft-starter
 type: craftcms
 docroot: public_html
 php_version: "8.1"

@@ -36,17 +36,17 @@ $prodIp = Console::prompt('What is the ip address for production? ', [
 $prodUsername = Console::prompt('What is the ssh username for production? ', [
     'required' => false,
 ]);
-$prodPath = Console::prompt('What is the full path the root? Include trailing / ', [
+$prodPath = Console::prompt('What is the full path the root production? Include trailing / ', [
     'required' => false,
 ]);
 
-$stagingIp = Console::prompt('What is the ip address for production? ', [
+$stagingIp = Console::prompt('What is the ip address for staging? ', [
     'required' => false,
 ]);
-$stagingUsername = Console::prompt('What is the ssh username for production? ', [
+$stagingUsername = Console::prompt('What is the ssh username for staging? ', [
     'required' => false,
 ]);
-$stagingPath = Console::prompt('What is the full path the root? Include trailing / ', [
+$stagingPath = Console::prompt('What is the full path the root for staging? Include trailing / ', [
     'required' => false,
 ]);
 
@@ -82,44 +82,44 @@ ScriptHelpers::replaceFileText(
 
 ScriptHelpers::replaceFileText(
     filePath: "$cwd/scripts/config.sh",
-    pattern: "[prodSshUsername]",
+    pattern: "prodSshUsername",
     replacement: "$prodUsername",
 );
 ScriptHelpers::replaceFileText(
     filePath: "$cwd/scripts/config.sh",
-    pattern: "[prodIp]",
+    pattern: "prodIp",
     replacement: "$prodIp"
 );
 ScriptHelpers::replaceFileText(
     filePath: "$cwd/scripts/config.sh",
-    pattern: "[prodPath]",
+    pattern: "prodPath",
     replacement: "$prodPath"
 );
 
 ScriptHelpers::replaceFileText(
     filePath: "$cwd/scripts/config.sh",
-    pattern: "[prodSshUsername]",
+    pattern: "prodSshUsername",
     replacement: "$prodUsername",
 );
 ScriptHelpers::replaceFileText(
     filePath: "$cwd/scripts/config.sh",
-    pattern: "[stagingSshUsername]",
+    pattern: "stagingSshUsername",
     replacement: "$stagingUsername"
 );
 ScriptHelpers::replaceFileText(
     filePath: "$cwd/scripts/config.sh",
-    pattern: "[stagingIp]",
+    pattern: "stagingIp",
     replacement: "$stagingIp"
 );
 ScriptHelpers::replaceFileText(
     filePath: "$cwd/scripts/config.sh",
-    pattern: "[stagingPath]",
+    pattern: "stagingPath",
     replacement: "$stagingPath"
 );
 
 ScriptHelpers::replaceFileText(
     filePath: "$cwd/scripts/config.staging.sh",
-    pattern: "[stagingPath]",
+    pattern: "stagingPath",
     replacement: "$stagingPath"
 );
 
