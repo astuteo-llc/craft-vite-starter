@@ -1,0 +1,8 @@
+baseUrl: $PRIMARY_SITE_URL
+handle: default
+hasUrls: true
+language: en-US
+name: 'Client Starting Point'
+primary: true
+siteGroup: 5d19bc1a-7515-467f-bb8c-6f4d759174c3 # Client Starting Point
+sortOrder: 1

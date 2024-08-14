@@ -1,0 +1,22 @@
+dateModified: 1723644972
+email:
+  fromEmail: hello@dustinwalker.com
+  fromName: 'Client Starting Point'
+  transportType: craft\mail\transportadapters\Sendmail
+meta:
+  __names__:
+    5d19bc1a-7515-467f-bb8c-6f4d759174c3: 'Client Starting Point' # Client Starting Point
+    52fdbf63-8258-4445-8393-66fc3b237ed8: 'Client Starting Point' # Client Starting Point
+system:
+  edition: solo
+  live: true
+  name: 'Client Starting Point'
+  schemaVersion: 5.3.0.2
+  timeZone: America/Los_Angeles
+users:
+  allowPublicRegistration: false
+  defaultGroup: null
+  photoSubpath: null
+  photoVolumeUid: null
+  require2fa: false
+  requireEmailVerification: true

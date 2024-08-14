@@ -23,6 +23,3 @@ web_environment:
   - DB_DATABASE=db
   - PRIMARY_SITE_URL=https://craft-starter.ddev.site/
   - CRAFT_WEB_ROOT=/var/www/html/public_html/
-  - REDIS_HOST=127.0.0.1
-  - REDIS_PASSWORD=null
-  - REDIS_PORT=6379

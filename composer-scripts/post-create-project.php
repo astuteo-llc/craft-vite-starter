@@ -130,7 +130,7 @@ ScriptHelpers::replaceFileText(
 
 ScriptHelpers::replaceFileText(
     filePath: "$cwd/config/project/project.yaml",
-    pattern: "/Astuteo Craft Starter/",
+    pattern: "/Client Starting Point/",
     replacement: "$projectName",
 );
 
@@ -143,14 +143,14 @@ ScriptHelpers::replaceFileText(
 );
 
 ScriptHelpers::replaceFileText(
-    filePath: "$cwd/config/project/siteGroups/805d8826-faed-4186-9b88-f509eb9b07e6.yaml",
-    pattern: "/Astuteo Craft Starter/",
+    filePath: "$cwd/config/project/siteGroups/5d19bc1a-7515-467f-bb8c-6f4d759174c3.yaml",
+    pattern: "/Client Starting Point/",
     replacement: "$projectName",
 );
 
 ScriptHelpers::replaceFileText(
-    filePath: "$cwd/config/project/sites/default--35b563a0-4662-40b9-b885-a8450a2868d9.yaml",
-    pattern: "/Astuteo Craft Starter/",
+    filePath: "$cwd/config/project/sites/default--52fdbf63-8258-4445-8393-66fc3b237ed8.yaml",
+    pattern: "/Client Starting Point/",
     replacement: "$projectName",
 );
 
